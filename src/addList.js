@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
 class AddList extends Component{
     state={
-        name:null,dueDate:null
+        name:''
     }
     handleSubmit= (e) =>{
         e.preventDefault();
         this.props.Addlist(this.state);
+        this.setState({
+            name:''
+        })
     }
     handleChange = (e) =>{
         this.setState({
@@ -14,10 +17,9 @@ class AddList extends Component{
     }
     render(){
         return(
-            <div>
+            <div className="input">
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Add an item" id="name" onChange={this.handleChange}/> <br/>
-                    <input type="text" placeholder="Add an item" id="dueDate" onChange={this.handleChange}/>
+                    <input type="text" placeholder="Add an item" id="name" onChange={this.handleChange} value={this.state.name}/> <br/>
                     <button>Add</button>
                 </form>
             </div>

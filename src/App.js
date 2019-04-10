@@ -4,7 +4,7 @@ import ShowList from './showList'
 
 class App extends Component {
   state = {
-    myTodo:[{name:null,dueDate:null,id:null}]
+    myTodo:[{name:"buy water",id:1}]
   }
   Addlist = (myTodo) =>{
     myTodo.id=Math.random();
@@ -13,18 +13,21 @@ class App extends Component {
       myTodo:todo
     })
   }
-  deleteList = (id) =>{
+  DeleteList = (id) =>{
     console.log(id);
-   // let mytodo = this.state.myTodo.filter(detail=>{
-      
-    //})
+    let mytodo = this.state.myTodo.filter(detail=>{
+      return detail.id !== id;
+    })
+    this.setState({
+      myTodo:mytodo
+    })
   }
   render() {
     return (
       <div className="App">
         <h1>Whats in my Todo list?</h1>
         <AddList Addlist={this.Addlist}/>
-        <ShowList Showlist={this.state.myTodo}  deleteList={this.deletList}/>
+        <ShowList Showlist={this.state.myTodo}  DeleteList={this.DeleteList}/>
       </div>
     );
   }
